@@ -65,8 +65,8 @@ const technologies = [
 const categories = ["All", "Frontend", "Backend", "Database", "Tools"];
 ---
 
-<section class="tech-stack">
-	<h3 class="text-xl font-bold mb-6 text-slate-100">Tech Stack</h3>
+<section class="tech-stack animate-blurred-fade-in">
+	<h2 class="text-2xl font-bold mb-6 text-slate-100">Tech Stack</h2>
 
 	<!-- Category Filter -->
 	<div class="category-filters mb-6">
@@ -130,7 +130,7 @@ const categories = ["All", "Frontend", "Backend", "Database", "Tools"];
 					(itemCategory && itemCategory.toLowerCase() === filter)
 				) {
 					htmlItem.style.display = "flex";
-					htmlItem.style.animation = "fadeIn 0.3s ease-in-out";
+          htmlItem.classList.add("animate-blurred-fade-in");
 				} else {
 					htmlItem.style.display = "none";
 				}
@@ -144,31 +144,5 @@ const categories = ["All", "Frontend", "Backend", "Database", "Tools"];
 		background-color: var(--bg-slate-600);
 		color: var(--text-white);
 		border-color: var(--border-slate-500);
-	}
-
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-			transform: translateY(10px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	.tech-stack {
-		animation: slideUp 0.6s ease-out;
-	}
-
-	@keyframes slideUp {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
 	}
 </style>
