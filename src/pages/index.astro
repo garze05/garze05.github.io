@@ -3,48 +3,65 @@ import Layout from "../layouts/Layout.astro";
 import ProfileBio from "../components/ProfileBio.astro";
 import ProfileSocial from "../components/ProfileSocials.astro";
 import Navigation from "../components/Navigation.astro";
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import TechStack from "../components/TechStack.astro";
 ---
 
 <Layout>
-	<div
-		class="mx-auto max-w-screen-xl lg:flex lg:h-screen gap-4 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 2xl:p-20"
-	>
+	<div class="lg:flex lg:justify-between lg:gap-4">
 		<!-- Columna izquierda-->
-		<section
-			class="lg:w-1/2 lg:pr-8 lg:h-full lg:flex lg:flex-col lg:justify-between"
+		<header
+			class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24"
 		>
 			<div class="flex flex-col gap-5">
-				<header>
-					<ProfileBio />
-				</header>
-				<nav>
-					<Navigation />
-				</nav>
+				<ProfileBio />
+				<Navigation />
 			</div>
 
 			<footer>
 				<ProfileSocial />
 			</footer>
-		</section>
+		</header>
 
 		<!-- Columna derecha -->
-		<main class="lg:w-1/2 lg:h-full lg:overflow-y-auto lg:pl-8">
+		<main class="lg:py-24 lg:w-1/2 lg:h-full lg:pl-8">
 			<div class="space-y-16">
-				<section>
-					<h2 class="text-2xl font-bold mb-4">Sobre mí</h2>
-					<p>Contenido largo aquí que necesitará scroll...</p>
+				<section id="about">
+					<p>
+						I’m a developer focused on creating intuitive, human-centered
+						solutions that blend thoughtful design with solid engineering. With
+						a background in <strong>Graphic and Web Design</strong> from <a
+							href="https://www.tec.ac.cr/fundatec"
+							target="_blank">FUNDATEC</a
+						> and currently studying <strong>Computer Engineering</strong> at <a
+							href="https://www.ulacit.ac.cr"
+							target="_blank">Ulacit</a
+						>, I bring both creative and analytical thinking to every project.
+					</p>
+					<p>
+						At <a href="https://www.ufinet.com" target="_blank">Ufinet</a>, I
+						contribute to software quality tools as an intern while expanding my
+						skills as a future Full Stack Developer. I’m driven by curiosity, a
+						desire to grow, and a commitment to building tech that positively
+						impacts people.
+					</p>
+					<p>
+						Outside of work, you’ll find me at the gym, learning, or creating
+						side projects that challenge and inspire me.
+					</p>
 				</section>
 
-				<section>
-					<h2 class="text-2xl font-bold mb-4">Experiencia</h2>
-					<p>Más contenido...</p>
+				<section id="experience">
+					<h2 class="text-2xl font-bold mb-4">Experience</h2>
+					<p>...</p>
 				</section>
 
-				<section>
-					<h2 class="text-2xl font-bold mb-4">Proyectos</h2>
-					<p>Aún más contenido para probar el scroll...</p>
+				<section id="projects">
+					<h2 class="text-2xl font-bold mb-4">Projects</h2>
+					<p>...</p>
+				</section>
+
+				<section id="tech-stack">
+					<TechStack />
 				</section>
 			</div>
 		</main>
