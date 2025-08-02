@@ -1,11 +1,52 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
+import Layout from "../layouts/Layout.astro";
+import ProfileBio from "../components/ProfileBio.astro";
+import ProfileSocial from "../components/ProfileSocials.astro";
+import Navigation from "../components/Navigation.astro";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<div
+		class="mx-auto max-w-screen-xl lg:flex lg:h-screen gap-4 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16 2xl:p-20"
+	>
+		<!-- Columna izquierda-->
+		<section
+			class="lg:w-1/2 lg:pr-8 lg:h-full lg:flex lg:flex-col lg:justify-between"
+		>
+			<div class="flex flex-col gap-5">
+				<header>
+					<ProfileBio />
+				</header>
+				<nav>
+					<Navigation />
+				</nav>
+			</div>
+
+			<footer>
+				<ProfileSocial />
+			</footer>
+		</section>
+
+		<!-- Columna derecha -->
+		<main class="lg:w-1/2 lg:h-full lg:overflow-y-auto lg:pl-8">
+			<div class="space-y-16">
+				<section>
+					<h2 class="text-2xl font-bold mb-4">Sobre mí</h2>
+					<p>Contenido largo aquí que necesitará scroll...</p>
+				</section>
+
+				<section>
+					<h2 class="text-2xl font-bold mb-4">Experiencia</h2>
+					<p>Más contenido...</p>
+				</section>
+
+				<section>
+					<h2 class="text-2xl font-bold mb-4">Proyectos</h2>
+					<p>Aún más contenido para probar el scroll...</p>
+				</section>
+			</div>
+		</main>
+	</div>
 </Layout>
