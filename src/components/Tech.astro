@@ -1,44 +1,62 @@
 ---
 import hexToRgb from "../helpers.ts";
+
 interface Props {
 	name: string;
 	icon: string;
 	category: string;
 	color: string;
 }
-
 const { name, icon, category, color } = Astro.props;
+
+// Load all paths for the Tech-Stack icons from our local server
+const localIcons = import.meta.glob('/src/assets/tech/*', { eager: true, as: 'url' });
+
+// Decide which svg path to use if SimpleIcons does not have the tech icon we are looking for
+let iconSrc;
+try {
+	const response = await fetch(`https://cdn.simpleicons.org/${icon}`);
+	// If the fetch for the icon does not throw a 404
+	if (response.ok) {
+		iconSrc = `https://cdn.simpleicons.org/${icon}`;
+	} else {
+		iconSrc = localIcons[`/src/assets/tech/${icon}.svg`] || '';
+	}
+} catch (error) {
+	// Resort to our local icons on error
+	iconSrc = localIcons[`/src/assets/tech/${icon}.svg`] || '';
+}
 
 const rgb = hexToRgb(color);
 const backgroundColorHover = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.15)`;
 const backgroundColorNormal = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.08)`;
-const borderColorHover = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.3)`;
+const borderColorHover = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.5)`;
 const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 ---
 
 <div
-	class="tech-item group relative flex flex-col items-center p-3 rounded-lg border transition-all duration-300 hover:scale-105 cursor-pointer"
+	class="tech-item group relative flex flex-col items-center p-3 rounded-lg border transition-all hover:scale-105 duration-200 cursor-pointer"
 	data-category={category}
 	style={`
         background-color: ${backgroundColorNormal};
-        border-color: rgba(71, 85, 105, 0.3);
-        --hover-bg: linear-gradient(135deg, ${backgroundColorHover}, rgba(30, 41, 59, 0.6));
+        border-color: rgba(71, 85, 105, 0.5);
+        --hover-bg: linear-gradient(90deg, ${backgroundColorHover}, rgba(30, 41, 59, 0.6));
         --hover-border: ${borderColorHover};
         --hover-shadow: 0 8px 25px -8px ${shadowColor};
     `}
 >
 	<div class="w-9 h-9 flex items-center justify-center relative">
+		<!-- <Fragment set:html={iconPath} class={"w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-300 relative z-10"} /> -->
 		<img
-			height="24"
-			width="24"
-			src={`https://cdn.simpleicons.org/${icon}`}
+			height="41"
+			width="41"
+			src={iconSrc}
 			alt={`${name} icon`}
-			class="w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-300 relative z-10"
-			onerror={`this.onerror=null; this.src='/src/assets/tech/${icon}.svg'`}
+			class="w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-200 relative z-10"
 		/>
 		<!-- Subtle glow effect behind icon -->
 		<div
-			class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 transition-opacity duration-300 blur-sm"
+			class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 blur-sm"
 			style={`background: radial-gradient(circle, ${color}40, transparent 70%);`}
 		>
 		</div>
@@ -46,7 +64,7 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 
 	<!-- Enhanced tooltip -->
 	<div
-		class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-slate-900/95 text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none whitespace-nowrap backdrop-blur-sm border border-slate-700/50"
+		class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-slate-900/95 text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap backdrop-blur-sm border border-slate-700/50"
 		style={`box-shadow: 0 4px 12px ${shadowColor};`}
 	>
 		{name}
@@ -56,6 +74,7 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 		</div>
 	</div>
 </div>
+
 
 <style>
 	.tech-item {
@@ -78,7 +97,6 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 		border-radius: inherit;
 		background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
 		opacity: 0;
-		transition: opacity 0.3s ease;
 		pointer-events: none;
 	}
 

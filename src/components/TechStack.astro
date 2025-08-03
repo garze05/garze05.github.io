@@ -5,12 +5,12 @@ import Tech from "./Tech.astro";
 const technologies = [
 	// Frontend
 	{ name: "React", icon: "react", category: "Frontend", color: "#61DAFB" },
-	{
-		name: "TypeScript",
-		icon: "typescript",
-		category: "Frontend",
-		color: "#3178C6",
-	},
+	// {
+	// 	name: "TypeScript",
+	// 	icon: "typescript",
+	// 	category: "Frontend",
+	// 	color: "#3178C6",
+	// },
 	{
 		name: "JavaScript",
 		icon: "javascript",
@@ -41,7 +41,7 @@ const technologies = [
 	{ name: "Python", icon: "python", category: "Backend", color: "#3776AB" },
 
 	// Database
-	{ name: "MongoDB", icon: "mongodb", category: "Database", color: "#47A248" },
+	// { name: "MongoDB", icon: "mongodb", category: "Database", color: "#47A248" },
 	{
 		name: "PostgreSQL",
 		icon: "postgresql",
@@ -59,13 +59,14 @@ const technologies = [
 	// Tools
 	{ name: "Git", icon: "git", category: "Tools", color: "#F05032" },
 	{ name: "Github", icon: "github", category: "Tools", color: "#181717" },
-	{ name: "Firebase", icon: "firebase", category: "Tools", color: "#DD2C00" },
+	// { name: "Firebase", icon: "firebase", category: "Tools", color: "#DD2C00" },
+	{ name: "Linux", icon: "linux", category: "Tools", color: "#FCC624"}
 ];
 
 const categories = ["All", "Frontend", "Backend", "Database", "Tools"];
 ---
 
-<section class="tech-stack animate-blurred-fade-in">
+<section class="tech-stack">
 	<h2 class="text-2xl font-bold mb-6 text-slate-100">Tech Stack</h2>
 
 	<!-- Category Filter -->
@@ -87,7 +88,7 @@ const categories = ["All", "Frontend", "Backend", "Database", "Tools"];
 	<!-- Tech Grid -->
 	<div
 		id="tech-grid"
-		class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4"
+		class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 gap-4"
 	>
 		{
 			technologies.map((tech) => (
@@ -134,15 +135,16 @@ const categories = ["All", "Frontend", "Backend", "Database", "Tools"];
                     htmlItem.classList.remove("dimmed");
                 } else {
                     // Non-selected items: dimmed, transparent and non-interactive
-                    htmlItem.style.opacity = "0.3";
-                    htmlItem.style.transform = "scale(0.95)";
-                    htmlItem.style.filter = "brightness(0.4) saturate(0.3) grayscale(0.5)";
+                    htmlItem.style.opacity = "0.1";
+                    htmlItem.style.filter = "brightness(0.2) saturate(0.3) contrast(0) grayscale(100%)";
                     htmlItem.style.pointerEvents = "none";
                     htmlItem.classList.add("dimmed");
                 }
             });
         });
     });
+
+		
 </script>
 
 <style>
@@ -153,14 +155,10 @@ const categories = ["All", "Frontend", "Backend", "Database", "Tools"];
     }
     
     .tech-item {
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        
     }
     
     .tech-item.dimmed {
         cursor: not-allowed;
-    }
-    
-    .tech-item.dimmed:hover {
-        transform: scale(0.95) !important;
     }
 </style>

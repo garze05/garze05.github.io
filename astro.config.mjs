@@ -8,5 +8,8 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
+  image: {
+    domains: ["cdn.simpleicons.org"],
+  },
   site: 'https://garze05.github.io'
 });

@@ -6,6 +6,10 @@
 	/* border: 1px solid red; */
 }
 
+svg {
+	fill: currentColor;
+}
+
 strong {
 	font-weight: inherit;
 }
