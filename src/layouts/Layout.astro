@@ -1,15 +1,27 @@
 ---
 import "../styles/global.css";
+import { SEO } from "astro-seo";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
+		<SEO 
+			title="Gabriel Rodríguez"
+			description="Gabriel Rodríguez is a computer engineer and web designer focused on creating intuitive, human-centered solutions that have a positive impact on people."
+      openGraph={{
+        basic: {
+          title: "Gabriel Rodríguez Portfolio",
+          type: "website",
+          image: "/og.png",
+        }
+      }}
+		/>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Gabriel Rodriguez</title>
+		<title>Gabriel Rodríguez</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
