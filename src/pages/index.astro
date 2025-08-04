@@ -10,13 +10,14 @@ import TechStack from "../components/TechStack.astro";
 	<div class="lg:flex lg:justify-between lg:gap-4">
 		<!-- Columna izquierda-->
 		<header
-			class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24"
+			class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24 space-y-4"
 		>
-			<div class="flex flex-col gap-5">
-				<ProfileBio />
-				<Navigation />
+			<div class="space-y-10">
+				<div class="flex flex-col sm:space-y-3">
+					<ProfileBio />
+				</div>
+					<Navigation />
 			</div>
-
 			<footer>
 				<ProfileSocial />
 			</footer>
@@ -26,6 +27,7 @@ import TechStack from "../components/TechStack.astro";
 		<main class="lg:py-24 lg:w-1/2 lg:h-full lg:pl-8">
 			<div class="space-y-16">
 				<section id="about">
+					<h3 class="text-2xl font-bold mb-4 lg:hidden">ABOUT</h3>
 					<p>
 						I’m a developer focused on creating intuitive, human-centered
 						solutions that blend thoughtful design with solid engineering. With
@@ -51,16 +53,17 @@ import TechStack from "../components/TechStack.astro";
 				</section>
 
 				<section id="experience">
-					<h2 class="text-2xl font-bold mb-4">Experience</h2>
+					<h3 class="text-2xl font-bold mb-4 lg:hidden">EXPERIENCE</h3>
 					<p>...</p>
 				</section>
 
 				<section id="projects">
-					<h2 class="text-2xl font-bold mb-4">Projects</h2>
+					<h3 class="text-2xl font-bold mb-4 lg:hidden">PROJECTS</h3>
 					<p>...</p>
 				</section>
 
 				<section id="tech-stack">
+					<h3 class="text-2xl font-bold mb-6 text-slate-100 lg:hidden">TECH STACK</h3>
 					<TechStack />
 				</section>
 			</div>
