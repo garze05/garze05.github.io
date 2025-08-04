@@ -43,6 +43,7 @@ h3 {
 	font-variant: normal;
 	font-weight: 700;
 	line-height: 15.4px;
+	font-size: 1rem;
 }
 p {
 	font-family:
@@ -56,6 +57,7 @@ p {
 	margin-block: 1em;
 	margin-block: 1lh;
 	color: oklch(0.76 0.04 260.72);
+	text-wrap: pretty;
 }
 blockquote {
 	font-family:
