@@ -5,7 +5,7 @@ const hexToRgb = (hex: string) => {
 		? {
 				r: parseInt(result[1], 16),
 				g: parseInt(result[2], 16),
-				b: parseInt(result[3], 16),
+				b: parseInt(result[3], 16)
 			}
 		: { r: 100, g: 116, b: 139 }; // fallback to slate-500
 };

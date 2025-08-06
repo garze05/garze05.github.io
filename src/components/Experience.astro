@@ -1,47 +1,66 @@
 ---
-import Tag from './Tag.astro';
+import Tag from "./Tag.astro";
 interface Props {
-  title: string;
-  company: string;
-  description: string;
-  yearStart: string;
-  yearEnd?: string; // Optional, defaults to "Present"
-  tags: string[];
-  url: string;
+	title: string;
+	company: string;
+	description: string;
+	yearStart: string;
+	yearEnd?: string; // Optional, defaults to "Present"
+	tags: string[];
+	url: string;
 }
-const { title, company , description, yearStart, yearEnd="PRESENT", tags, url} = Astro.props;
+const { title, company, description, yearStart, yearEnd = "PRESENT", tags, url } = Astro.props;
 ---
-<a href={url} target="_blank" rel="noopener noreferrer" class="relative group rounded-md -mx-5 px-5 py-4 transition-all cursor-pointer hover:bg-slate-800/80 border-t border-transparent hover:border-slate-500 block">
-  <div class="flex flex-col lg:flex-row lg:gap-4 h-full">
-    <div class="flex flex-col justify-between items-start mb-2 lg:w-1/2">
-      <div class="flex flex-col">
-        <h3 class="text-lg font-semibold transition-all group-hover:text-amber-400">{title}</h3>
-        <div class="inline-flex items-center text-amber-400">
-          <span class="mt-1 mb-2 text-sm transition-all group-hover:-translate-y-1">{company}</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="w-4 h-4 ml-1 opacity-0 transition-all group-hover:opacity-100 group-hover:-translate-y-1" fill="currentColor" viewBox="0 0 20 20">
-            <path fill="currentColor" d="M9 15H8v-1H7v-1h1v-1h1v-1h1v-1h1V9H8V7h7v7h-2v-3h-1v1h-1v1h-1v1H9m9 6H4v-1H3v-1H2V4h1V3h1V2h14v1h1v1h1v14h-1v1h-1m-1-1v-1h1V5h-1V4H5v1H4v12h1v1Z" />
-          </svg>
-        </div>
-      </div>
-      <span class="text-xs text-gray-400">{yearStart} - {yearEnd}</span>
-    </div>
-    <div class="flex flex-col sm:justify-between w-full">
-      <p class="description text-gray-400 flex-grow">{description}</p>
-      <div class="pt-2">
-        <!-- For all tags, create new array of tags of the element -->
-        {tags.map((tag) => (
-          <Tag name={tag} />
-        ))}
-      </div>
-    </div>
-  </div>
+
+<a
+	href={url}
+	target="_blank"
+	rel="noopener noreferrer"
+	class="group relative -mx-5 block cursor-pointer rounded-md border-t border-transparent px-5 py-4 transition-all hover:border-slate-500 hover:bg-slate-800/80"
+>
+	<div class="flex h-full flex-col lg:flex-row lg:gap-4">
+		<div class="mb-2 flex flex-col items-start justify-between lg:w-1/2">
+			<div class="flex flex-col">
+				<h3 class="text-lg font-semibold transition-all group-hover:text-amber-400">
+					{title}
+				</h3>
+				<div class="inline-flex items-center text-amber-400">
+					<span class="mt-1 mb-2 text-sm transition-all group-hover:-translate-y-1"
+						>{company}</span
+					>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						class="ml-1 h-4 w-4 opacity-0 transition-all group-hover:-translate-y-1 group-hover:opacity-100"
+						fill="currentColor"
+						viewBox="0 0 20 20"
+					>
+						<path
+							fill="currentColor"
+							d="M9 15H8v-1H7v-1h1v-1h1v-1h1v-1h1V9H8V7h7v7h-2v-3h-1v1h-1v1h-1v1H9m9 6H4v-1H3v-1H2V4h1V3h1V2h14v1h1v1h1v14h-1v1h-1m-1-1v-1h1V5h-1V4H5v1H4v12h1v1Z"
+						></path>
+					</svg>
+				</div>
+			</div>
+			<span class="text-xs text-gray-400">{yearStart} - {yearEnd}</span>
+		</div>
+		<div class="flex w-full flex-col sm:justify-between">
+			<p class="description flex-grow text-gray-400">{description}</p>
+			<div class="pt-2">
+				<!-- For all tags, create new array of tags of the element -->
+				{tags.map((tag) => <Tag name={tag} />)}
+			</div>
+		</div>
+	</div>
 </a>
 
 <style>
-  p {
-    margin-block: inherit;
-  }
-  p.description {
-    font-size: 0.8rem;
-  }
+	p {
+		margin-block: inherit;
+	}
+	p.description {
+		font-size: 0.8rem;
+	}
 </style>

@@ -6,16 +6,16 @@ import { SEO } from "astro-seo";
 <!doctype html>
 <html lang="en" class="scroll-smooth">
 	<head>
-		<SEO 
+		<SEO
 			title="Gabriel Rodríguez"
 			description="Gabriel Rodríguez is a computer engineer and web designer focused on creating intuitive, human-centered solutions that have a positive impact on people."
-      openGraph={{
-        basic: {
-          title: "Gabriel Rodríguez Portfolio",
-          type: "website",
-          image: "/og.png",
-        }
-      }}
+			openGraph={{
+				basic: {
+					title: "Gabriel Rodríguez Portfolio",
+					type: "website",
+					image: "/og.png"
+				}
+			}}
 		/>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -30,7 +30,7 @@ import { SEO } from "astro-seo";
 		/>
 	</head>
 	<body
-		class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-16 lg:py-0 bg-gradient-to-r from-slate-900 to-slate-700 text-slate-200"
+		class="mx-auto min-h-screen max-w-screen-xl bg-gradient-to-r from-slate-900 to-slate-700 px-6 py-12 text-slate-200 md:px-12 md:py-16 lg:py-0"
 	>
 		<slot />
 	</body>

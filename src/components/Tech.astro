@@ -10,7 +10,7 @@ interface Props {
 const { name, icon, category, color } = Astro.props;
 
 // Load all paths for the Tech-Stack icons from our local server
-const localIcons = import.meta.glob('/src/assets/tech/*', { eager: true, as: 'url' });
+const localIcons = import.meta.glob("/src/assets/tech/*", { eager: true, as: "url" });
 
 // Decide which svg path to use if SimpleIcons does not have the tech icon we are looking for
 let iconSrc;
@@ -20,11 +20,11 @@ try {
 	if (response.ok) {
 		iconSrc = `https://cdn.simpleicons.org/${icon}`;
 	} else {
-		iconSrc = localIcons[`/src/assets/tech/${icon}.svg`] || '';
+		iconSrc = localIcons[`/src/assets/tech/${icon}.svg`] || "";
 	}
 } catch (error) {
 	// Resort to our local icons on error
-	iconSrc = localIcons[`/src/assets/tech/${icon}.svg`] || '';
+	iconSrc = localIcons[`/src/assets/tech/${icon}.svg`] || "";
 }
 
 const rgb = hexToRgb(color);
@@ -35,7 +35,7 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 ---
 
 <div
-	class="tech-item group relative flex flex-col items-center p-3 rounded-lg border transition-all hover:scale-105 duration-200 cursor-pointer"
+	class="tech-item group relative flex cursor-pointer flex-col items-center rounded-lg border p-3 transition-all duration-200 hover:scale-105"
 	data-category={category}
 	style={`
         background-color: ${backgroundColorNormal};
@@ -45,18 +45,18 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
         --hover-shadow: 0 8px 25px -8px ${shadowColor};
     `}
 >
-	<div class="w-9 h-9 flex items-center justify-center relative">
+	<div class="relative flex h-9 w-9 items-center justify-center">
 		<!-- <Fragment set:html={iconPath} class={"w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-300 relative z-10"} /> -->
 		<img
 			height="41"
 			width="41"
 			src={iconSrc}
 			alt={`${name} icon`}
-			class="w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-200 relative z-10"
+			class="relative z-10 h-full w-full object-contain brightness-90 filter transition-all duration-200 group-hover:brightness-110"
 		/>
 		<!-- Subtle glow effect behind icon -->
 		<div
-			class="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 blur-sm"
+			class="absolute inset-0 rounded-full opacity-0 blur-sm group-hover:opacity-30"
 			style={`background: radial-gradient(circle, ${color}40, transparent 70%);`}
 		>
 		</div>
@@ -64,17 +64,16 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 
 	<!-- Enhanced tooltip -->
 	<div
-		class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-slate-900/95 text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none whitespace-nowrap backdrop-blur-sm border border-slate-700/50"
+		class="pointer-events-none absolute -top-5 left-1/2 -translate-x-1/2 transform rounded-md border border-slate-700/50 bg-slate-900/95 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 backdrop-blur-sm transition-all duration-200 group-hover:opacity-100"
 		style={`box-shadow: 0 4px 12px ${shadowColor};`}
 	>
 		{name}
 		<div
-			class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-slate-900/95"
+			class="absolute top-full left-1/2 h-0 w-0 -translate-x-1/2 transform border-t-2 border-r-2 border-l-2 border-transparent border-t-slate-900/95"
 		>
 		</div>
 	</div>
 </div>
-
 
 <style>
 	.tech-item {
