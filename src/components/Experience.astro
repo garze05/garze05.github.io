@@ -7,36 +7,35 @@ interface Props {
   yearStart: string;
   yearEnd?: string; // Optional, defaults to "Present"
   tags: string[];
+  url: string;
 }
-const { title, company , description, yearStart, yearEnd="PRESENT", tags } = Astro.props;
+const { title, company , description, yearStart, yearEnd="PRESENT", tags, url} = Astro.props;
 ---
-<div class="relative group rounded-md -mx-5 px-5 py-4 transition-all cursor-pointer hover:bg-slate-800/50">
-<div class="flex flex-col lg:flex-row lg:gap-4 h-full">
-  <div class="flex flex-col justify-between items-start mb-2 lg:w-1/2">
-    <div class="flex flex-col">
-      <h3 class="text-lg font-semibold">{title}</h3>
-      <div class="inline-flex items-center text-amber-400">
-        <span class="mt-1 mb-2 text-sm">{company}</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="w-4 h-4 ml-1 opacity-0 transition-opacity group-hover:opacity-100 group-hover:animate-pop" fill="currentColor" viewBox="0 0 20 20">
-        <g fill="none">
-          <path d="M24 0v24H0V0zM12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.105.074l.014.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.092l.01-.009l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
-          <path fill="currentColor" d="M18 4.5A1.5 1.5 0 0 1 19.5 6v8a1.5 1.5 0 0 1-3 0V9.621l-9.097 9.097a1.5 1.5 0 0 1-2.12-2.122L14.377 7.5H10a1.5 1.5 0 1 1 0-3z" />
-        </g>
-      </svg>
+<a href={url} target="_blank" rel="noopener noreferrer" class="relative group rounded-md -mx-5 px-5 py-4 transition-all cursor-pointer hover:bg-slate-800/80 border-t border-transparent hover:border-slate-500 block">
+  <div class="flex flex-col lg:flex-row lg:gap-4 h-full">
+    <div class="flex flex-col justify-between items-start mb-2 lg:w-1/2">
+      <div class="flex flex-col">
+        <h3 class="text-lg font-semibold transition-all group-hover:text-amber-400">{title}</h3>
+        <div class="inline-flex items-center text-amber-400">
+          <span class="mt-1 mb-2 text-sm transition-all group-hover:-translate-y-1">{company}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="w-4 h-4 ml-1 opacity-0 transition-all group-hover:opacity-100 group-hover:-translate-y-1" fill="currentColor" viewBox="0 0 20 20">
+            <path fill="currentColor" d="M9 15H8v-1H7v-1h1v-1h1v-1h1v-1h1V9H8V7h7v7h-2v-3h-1v1h-1v1h-1v1H9m9 6H4v-1H3v-1H2V4h1V3h1V2h14v1h1v1h1v14h-1v1h-1m-1-1v-1h1V5h-1V4H5v1H4v12h1v1Z" />
+          </svg>
+        </div>
       </div>
-
+      <span class="text-xs text-gray-400">{yearStart} - {yearEnd}</span>
     </div>
-    <span class="text-xs text-gray-400">{yearStart} - {yearEnd}</span>
+    <div class="flex flex-col sm:justify-between w-full">
+      <p class="description text-gray-400 flex-grow">{description}</p>
+      <div class="pt-2">
+        <!-- For all tags, create new array of tags of the element -->
+        {tags.map((tag) => (
+          <Tag name={tag} />
+        ))}
+      </div>
+    </div>
   </div>
-  <div class="flex flex-col sm:justify-between w-full">
-    <p class="description text-gray-400 flex-grow">{description}</p>
-    <div class="pt-2">
-      <!-- For all tags, create new array of tags of the element -->
-      {tags.map((tag) => (
-        <Tag name={tag} />
-      ))}
-  </div>
-</div>
+</a>
 
 <style>
   p {

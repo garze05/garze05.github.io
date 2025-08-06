@@ -59,6 +59,11 @@ p {
 	margin-block: 1lh;
 	color: oklch(0.76 0.04 260.72);
 }
+span {
+	font-family:
+		"Inter", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans",
+		"Helvetica Neue", Arial, sans-serif;
+}
 blockquote {
 	font-family:
 		"Inter", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans",
