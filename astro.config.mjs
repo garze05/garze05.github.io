@@ -11,5 +11,5 @@ export default defineConfig({
   image: {
     domains: ["cdn.simpleicons.org"],
   },
-  site: 'https://garze05.github.io'
+  site: 'https://gabrielro.com'
 });
