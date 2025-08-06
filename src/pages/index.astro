@@ -4,11 +4,12 @@ import ProfileBio from "../components/ProfileBio.astro";
 import ProfileSocial from "../components/ProfileSocials.astro";
 import Navigation from "../components/Navigation.astro";
 import TechStack from "../components/TechStack.astro";
+import Experience from "../components/Experience.astro";
 ---
 <Layout>
-	<div class="fixed bottom-0 left-0 w-full z-50 backdrop-blur-md">
+	<div class="fixed bottom-0 left-0 w-full z-50 backdrop-blur-md" aria-label="Work in Progress" role="presentation">
 		<div class="px-4 py-2 text-center">
-			<p class="text-sm !my-0 font-medium text-white tracking-wide">
+			<p class="text-sm !my-0 font-medium text-white tracking-wide select-none">
 				🚧 Work in Progress
 			</p>
 		</div>
@@ -17,22 +18,20 @@ import TechStack from "../components/TechStack.astro";
 		<!-- Columna izquierda-->
 		<header
 			class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24 space-y-4"
-		>
+			aria-label="Profile Header" role="banner">
 			<div class="space-y-10">
 				<div class="flex flex-col sm:space-y-3">
 					<ProfileBio />
 				</div>
 					<Navigation />
 			</div>
-			<footer>
 				<ProfileSocial />
-			</footer>
 		</header>
 
 		<!-- Columna derecha -->
-		<main class="lg:py-24 pt-24 lg:w-1/2 lg:h-full lg:pl-8">
+		<main class="lg:py-24 pt-24 lg:w-1/2 lg:h-full lg:pl-8" aria-label="Main Content" role="main">
 			<div class="space-y-16">
-				<section id="about">
+				<section id="about" class="scroll-mt-24">
 					<h3 class="text-2xl font-bold mb-4 lg:hidden">ABOUT</h3>
 					<p>
 						I’m a developer focused on creating intuitive, human-centered
@@ -42,11 +41,11 @@ import TechStack from "../components/TechStack.astro";
 							target="_blank">FUNDATEC</a
 						> and currently studying <strong>Computer Engineering</strong> at <a
 							href="https://www.ulacit.ac.cr"
-							target="_blank">Ulacit</a
+							target="_blank">ULACIT</a
 						>, I bring both creative and analytical thinking to every project.
 					</p>
 					<p>
-						At <a href="https://www.ufinet.com" target="_blank">Ufinet</a>, I
+						At <a href="https://www.ufinet.com" target="_blank">UFINET</a>, I
 						contribute to software quality tools as an intern while expanding my
 						skills as a future Full Stack Developer. I’m driven by curiosity, a
 						desire to grow, and a commitment to building tech that positively
@@ -58,17 +57,37 @@ import TechStack from "../components/TechStack.astro";
 					</p>
 				</section>
 
-				<section id="experience">
-					<h3 class="text-2xl font-bold mb-4 lg:hidden">EXPERIENCE</h3>
-					<p>...</p>
+				<section id="experience" class="space-y-8 mt-32 scroll-mt-32">
+					<h3 class="text-2xl font-bold mb-10 lg:hidden">EXPERIENCE</h3>
+					<ol class="space-y-12 group/list">
+						<li class="group/item">
+							<Experience
+								title="Software Engineer Intern"
+								company="UFINET"
+								description="Developed a program to parse JSX and Katalon Studio Objects for software automation testing component detection."
+								yearStart="2025"
+								tags={["JavaScript", "HTML5", "CSS", "Node.js", "Electron", "Babel/Parser", "Katalon Studio"]}
+							/>
+						</li>
+						<li class="group/item">
+							<Experience
+								title="Frontend Developer"
+								company="Avalantec"
+								description="Designed and developed a calendar application for managing events and tasks for a healthcare management system."
+								yearStart="2023"
+								yearEnd="2024"
+								tags={["Angular", "JavaScript", "TypeScript", "Tailwind CSS", "Bootstrap", "Node.js", "Express"]}
+							/>
+						</li>
+					</ol>
 				</section>
 
-				<section id="projects">
+				<section id="projects" class="mt-32 space-y-8 scroll-mt-32">
 					<h3 class="text-2xl font-bold mb-4 lg:hidden">PROJECTS</h3>
 					<p>...</p>
 				</section>
 
-				<section id="tech-stack">
+				<section id="tech-stack" class="mt-32 scroll-mt-32">
 					<h3 class="text-2xl font-bold mb-6 text-slate-100 lg:hidden">TECH STACK</h3>
 					<TechStack />
 				</section>

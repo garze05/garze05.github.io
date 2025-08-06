@@ -1,0 +1,37 @@
+---
+import Tag from './Tag.astro';
+interface Props {
+  title: string;
+  company: string;
+  description: string;
+  yearStart: string;
+  yearEnd?: string; // Optional, defaults to "Present"
+  tags: string[];
+}
+const { title, company , description, yearStart, yearEnd="PRESENT", tags } = Astro.props;
+---
+<div class="flex flex-col lg:flex-row lg:gap-4 h-full">
+  <div class="flex flex-col justify-between items-start mb-2 lg:w-1/2">
+    <div class="flex flex-col">
+      <h3 class="text-lg font-semibold">{title}</h3>
+      <span class="text-gray-300 mt-1 mb-2 text-sm">{company}</span>
+    </div>
+    <span class="text-xs text-gray-400">{yearStart} - {yearEnd}</span>
+  </div>
+  <div class="flex flex-col sm:items-center sm:justify-between w-full">
+    <p class="description text-gray-400 flex-grow">{description}</p>
+    <div class="pt-2">
+      {tags.map((tag) => (
+        <Tag name={tag} />
+      ))}
+  </div>
+</div>
+
+<style>
+  p {
+    margin-block: inherit;
+  }
+  p.description {
+    font-size: 0.8rem;
+  }
+</style>
