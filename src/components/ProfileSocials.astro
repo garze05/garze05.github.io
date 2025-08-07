@@ -6,31 +6,34 @@ import Email from "../assets/icons/email.svg";
 import BtnResume from "./BtnResume.astro";
 ---
 
-<div class="-ml-3.5 flex flex-col justify-start gap-1 sm:flex-row sm:items-center">
-	<div class="order-1 w-full sm:order-last sm:w-auto">
-		<BtnResume />
-	</div>
-	<div class="order-1 flex items-center gap-1 sm:order-2">
-		<a href="https://github.com/garze05" target="_blank" rel="noopener noreferrer" class="p-3"
-			><Github aria-label="Github" class="h-6 w-6 fill-current" /></a
+<div class="flex flex-row items-center justify-start gap-1 lg:-ml-3.5">
+	<div class="flex items-center gap-1">
+		<a
+			href="https://github.com/garze05"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="p-1 sm:p-3"><Github aria-label="Github" class="h-6 w-6 fill-current" /></a
 		>
 		<a
 			href="https://www.linkedin.com/in/gabrielrodriguezovares"
 			target="_blank"
 			rel="noopener noreferrer"
-			class="p-3"><Linkedin aria-label="Linkedin" class="h-6 w-6 fill-current" /></a
+			class="p-1 sm:p-3"><Linkedin aria-label="Linkedin" class="h-6 w-6 fill-current" /></a
 		>
 		<a
 			href="https://www.instagram.com/gab.ro10"
 			target="_blank"
 			rel="noopener noreferrer"
-			class="p-3"><Instagram aria-label="Instagram" class="h-6 w-6 fill-current" /></a
+			class="p-1 sm:p-3"><Instagram aria-label="Instagram" class="h-6 w-6 fill-current" /></a
 		>
 		<a
 			href="mailto:grodriguezov@gmail.com"
 			target="_blank"
 			rel="noopener noreferrer"
-			class="p-3"><Email aria-label="Email" class="h-6 w-6 fill-current" /></a
+			class="p-1 sm:p-3"><Email aria-label="Email" class="h-6 w-6 fill-current" /></a
 		>
+		<div class="w-full">
+			<BtnResume />
+		</div>
 	</div>
 </div>
