@@ -8,9 +8,10 @@ interface Props {
 	title: string;
 	tags: string[];
 	description: string;
+	link?: string;
 }
 
-const { imagePath, altText = "", title = "", tags = [], description = "" } = Astro.props;
+const { imagePath, altText = "", title = "", tags = [], description = "", link } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
 	"/src/assets/projects/*.{jpeg,jpg,png,gif}"
 );
@@ -20,39 +21,41 @@ if (!images[imagePath])
 	);
 ---
 
-<div
-	class="group relative m-0 -mx-5 cursor-pointer rounded-lg border-t border-transparent object-cover px-5 py-6 transition-all hover:border-slate-500 hover:bg-slate-800/80"
->
-	<div class="relative overflow-hidden rounded-lg">
-		<Image
-			src={images[imagePath]()}
-			alt={altText}
-			class="w-full rounded-lg border-1 border-transparent transition-all duration-150 group-hover:opacity-40"
-		/>
+<a href={link} target="_blank" rel="noopener noreferrer">
+	<div
+		class=`group relative m-0 rounded-lg border-t border-transparent object-cover px-5 py-6 transition-all hover:border-slate-500 hover:bg-slate-800/80 ${link ? 'cursor-pointer' : ''}`
+	>
+		<div class="relative overflow-hidden rounded-lg">
+			<Image
+				src={images[imagePath]()}
+				alt={altText}
+				class="w-full rounded-lg border-1 border-transparent transition-all duration-150 group-hover:opacity-40"
+			/>
+		</div>
+		<div class="my-3 inline-flex items-center gap-1">
+			<span
+				class="text-md font-semibold text-slate-200 transition-colors group-hover:text-amber-400 sm:text-xl"
+			>
+				{title}
+			</span>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				class=`${link ? 'opacity-100' : 'opacity-0'} h-4 w-4 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-amber-400`
+			>
+				<path
+					d="M9 15H8v-1H7v-1h1v-1h1v-1h1v-1h1V9H8V7h7v7h-2v-3h-1v1h-1v1h-1v1H9m9 6H4v-1H3v-1H2V4h1V3h1V2h14v1h1v1h1v14h-1v1h-1m-1-1v-1h1V5h-1V4H5v1H4v12h1v1Z"
+				></path>
+			</svg>
+		</div>
+		<p class="description flex-grow text-gray-400">{description}</p>
+		<div class="pt-2">
+			{tags.map((tag) => <Tag name={tag} />)}
+		</div>
 	</div>
-	<div class="my-3 inline-flex items-center gap-1">
-		<span
-			class="text-md font-semibold text-slate-200 transition-colors group-hover:text-amber-400 sm:text-xl"
-		>
-			{title}
-		</span>
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
-			class="h-4 w-4 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-amber-400"
-		>
-			<path
-				d="M9 15H8v-1H7v-1h1v-1h1v-1h1v-1h1V9H8V7h7v7h-2v-3h-1v1h-1v1h-1v1H9m9 6H4v-1H3v-1H2V4h1V3h1V2h14v1h1v1h1v14h-1v1h-1m-1-1v-1h1V5h-1V4H5v1H4v12h1v1Z"
-			></path>
-		</svg>
-	</div>
-	<p class="description flex-grow text-gray-400">{description}</p>
-	<div class="pt-2">
-		{tags.map((tag) => <Tag name={tag} />)}
-	</div>
-</div>
+</a>
 
 <style>
 	p {
