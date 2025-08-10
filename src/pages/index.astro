@@ -42,12 +42,8 @@ import Project from "../components/Project.astro";
 		<div class="pt-24 lg:h-full lg:w-1/2 lg:py-24 lg:pl-8">
 			<main aria-label="Main Content" role="main">
 				<div class="space-y-16">
-					<h3
-						class="sticky top-0 z-50 -mx-6 mb-4 w-screen px-6 py-4 text-2xl font-bold backdrop-blur-sm lg:hidden"
-					>
-						ABOUT
-					</h3>
 					<section id="about" class="scroll-mt-32">
+						<h3 class="mb-4 text-2xl font-bold lg:hidden">ABOUT</h3>
 						<p>
 							I’m a developer focused on creating intuitive, human-centered solutions
 							that blend thoughtful design with solid engineering. With a background
@@ -71,16 +67,12 @@ import Project from "../components/Project.astro";
 							projects that challenge and inspire me.
 						</p>
 					</section>
-					<h3
-						class="sticky top-0 z-50 -mx-6 mb-4 w-screen px-6 py-4 text-2xl font-bold backdrop-blur-sm lg:hidden"
-					>
-						PROJECTS
-					</h3>
-					<section id="projects" class="mt-32 scroll-mt-32 space-y-8">
+					<section id="projects" class="scroll-mt-32">
+						<h3 class="mb-4 text-2xl font-bold lg:hidden">PROJECTS</h3>
 						<Project
 							imagePath="/src/assets/projects/okidoki.png"
 							altText="Okidoki project screenshot"
-							title="OkiDoki Website"
+							title="OkiDoki Business Website"
 							tags={[
 								"React",
 								"JavaScript",
@@ -91,12 +83,8 @@ import Project from "../components/Project.astro";
 							]}
 						/>
 					</section>
-					<h3
-						class="sticky top-0 z-50 -mx-6 mb-10 w-screen px-6 py-4 text-2xl font-bold backdrop-blur-sm lg:hidden"
-					>
-						EXPERIENCE
-					</h3>
-					<section id="experience" class="mt-32 scroll-mt-32 space-y-8">
+					<section id="experience" class="scroll-mt-32">
+						<h3 class="mb-4 text-2xl font-bold lg:hidden">EXPERIENCE</h3>
 						<ol class="group/list space-y-6">
 							<li class="group/item">
 								<Experience
@@ -137,12 +125,8 @@ import Project from "../components/Project.astro";
 							</li>
 						</ol>
 					</section>
-					<h3
-						class="sticky top-0 z-50 -mx-6 mb-6 w-screen px-6 py-4 text-2xl font-bold backdrop-blur-sm lg:hidden"
-					>
-						TECH STACK
-					</h3>
-					<section id="techstack" class="mt-32 scroll-mt-32">
+					<section id="techstack" class="scroll-mt-32">
+						<h3 class="mb-4 text-2xl font-bold lg:hidden">TECH STACK</h3>
 						<TechStack />
 					</section>
 				</div>
