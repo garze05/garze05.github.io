@@ -67,7 +67,8 @@ import Project from "../components/Project.astro";
 							projects that challenge and inspire me.
 						</p>
 					</section>
-					<section id="projects" class="scroll-mt-32">
+
+					<section id="projects" class="scroll-mt-32 lg:mt-32">
 						<h3 class="mb-4 text-2xl font-bold lg:hidden">PROJECTS</h3>
 						<Project
 							imagePath="/src/assets/projects/okidoki.png"
@@ -79,11 +80,21 @@ import Project from "../components/Project.astro";
 								"Tailwind CSS",
 								"Astro",
 								"Node.js",
-								"Express"
+								"Express",
+								"MySQL"
 							]}
+							description="Landing page for a mascot costume business. Features a searchable service catalog powered by an API and a dashboard for managing services with full CRUD functionality."
+						/>
+						<Project
+							imagePath="/src/assets/projects/randquote.png"
+							altText="Random Quote Generator project screenshot"
+							title="Random Quote Generator"
+							tags={["Node.js", "JavaScript", "JSON"]}
+							description="A console application that generates random quotes from a JSON file. Users can save their name and favourite categories to generate personalized quotes. Randomizes welcome, goodbye, and more."
 						/>
 					</section>
-					<section id="experience" class="scroll-mt-32">
+
+					<section id="experience" class="scroll-mt-32 lg:mt-32">
 						<h3 class="mb-4 text-2xl font-bold lg:hidden">EXPERIENCE</h3>
 						<ol class="group/list space-y-6">
 							<li class="group/item">
@@ -125,7 +136,8 @@ import Project from "../components/Project.astro";
 							</li>
 						</ol>
 					</section>
-					<section id="techstack" class="scroll-mt-32">
+
+					<section id="techstack" class="scroll-mt-32 lg:mt-32">
 						<h3 class="mb-4 text-2xl font-bold lg:hidden">TECH STACK</h3>
 						<TechStack />
 					</section>
