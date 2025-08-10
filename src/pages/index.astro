@@ -5,8 +5,7 @@ import ProfileSocial from "../components/ProfileSocials.astro";
 import Navigation from "../components/Navigation.astro";
 import TechStack from "../components/TechStack.astro";
 import Experience from "../components/Experience.astro";
-import Download from "../assets/icons/download.svg";
-import BtnResume from "../components/BtnResume.astro";
+import Project from "../components/Project.astro";
 ---
 
 <Layout>
@@ -69,13 +68,34 @@ import BtnResume from "../components/BtnResume.astro";
 						</p>
 					</section>
 
-					<section id="projects" class="mt-32 scroll-mt-32 space-y-8">
+					<section id="projects" class="scroll-mt-32 lg:mt-32">
 						<h3 class="mb-4 text-2xl font-bold lg:hidden">PROJECTS</h3>
-						<p>...</p>
+						<Project
+							imagePath="/src/assets/projects/okidoki.png"
+							altText="Okidoki project screenshot"
+							title="OkiDoki Business Website"
+							tags={[
+								"React",
+								"JavaScript",
+								"Tailwind CSS",
+								"Astro",
+								"Node.js",
+								"Express",
+								"MySQL"
+							]}
+							description="Landing page for a mascot costume business. Features a searchable service catalog powered by an API and a dashboard for managing services with full CRUD functionality."
+						/>
+						<Project
+							imagePath="/src/assets/projects/randquote.png"
+							altText="Random Quote Generator project screenshot"
+							title="Random Quote Generator"
+							tags={["Node.js", "JavaScript", "JSON"]}
+							description="A console application that generates random quotes from a JSON file. Users can save their name and favourite categories to generate personalized quotes. Randomizes welcome, goodbye, and more."
+						/>
 					</section>
 
-					<section id="experience" class="mt-32 scroll-mt-32 space-y-8">
-						<h3 class="mb-10 text-2xl font-bold lg:hidden">EXPERIENCE</h3>
+					<section id="experience" class="scroll-mt-32 lg:mt-32">
+						<h3 class="mb-4 text-2xl font-bold lg:hidden">EXPERIENCE</h3>
 						<ol class="group/list space-y-6">
 							<li class="group/item">
 								<Experience
@@ -117,8 +137,8 @@ import BtnResume from "../components/BtnResume.astro";
 						</ol>
 					</section>
 
-					<section id="techstack" class="mt-32 scroll-mt-32">
-						<h3 class="mb-6 text-2xl font-bold text-slate-100 lg:hidden">TECH STACK</h3>
+					<section id="techstack" class="scroll-mt-32 lg:mt-32">
+						<h3 class="mb-4 text-2xl font-bold lg:hidden">TECH STACK</h3>
 						<TechStack />
 					</section>
 				</div>
