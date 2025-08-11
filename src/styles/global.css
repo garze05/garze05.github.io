@@ -19,7 +19,7 @@ html {
 }
 
 a {
-	color: white;
+	color: var(--color-slate-200);
 	text-decoration: none;
 	transition: color 0.2s ease-in-out;
 }
@@ -58,7 +58,7 @@ p {
 	line-height: var(--leading-relaxed);
 	margin-block: 1em; /* Fallback */
 	margin-block: 1lh;
-	color: oklch(0.76 0.04 260.72);
+	color: var(--color-slate-400);
 }
 span {
 	font-family:

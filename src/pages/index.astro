@@ -39,7 +39,7 @@ import Project from "../components/Project.astro";
 		</header>
 
 		<!-- Columna derecha -->
-		<div class="pt-24 lg:h-full lg:w-1/2 lg:py-24 lg:pl-8">
+		<div class="pt-24 pb-12 lg:h-full lg:w-1/2 lg:py-24 lg:pl-8">
 			<main aria-label="Main Content" role="main">
 				<div class="space-y-16">
 					<section id="about" class="scroll-mt-32">
@@ -147,9 +147,30 @@ import Project from "../components/Project.astro";
 					</section>
 				</div>
 			</main>
-			<!-- <footer class="max-w-sm">
-			<p>Coded in Visual Studio Code, built with Astro and Tailwind CSS, deployed in Github Pages. All text is set in the Inter typeface.</p>
-		</footer> -->
+			<footer class="mt-15 max-w-sm">
+				<p>
+					Coded in <a href="https://code.visualstudio.com/" target="_blank"
+						>Visual Studio Code</a
+					>, built with <a href="https://astro.build/" target="_blank">Astro</a> and <a
+						href="https://tailwindcss.com/"
+						target="_blank">Tailwind CSS</a
+					>, deployed on
+					<a href="https://pages.github.com/" target="_blank">Github Pages</a>.
+				</p>
+				<br />
+				<p>
+					Design inspired by <a href="https://brittanychiang.com/" target="_blank"
+						>Brittany Chiang's</a
+					> Portfolio.
+				</p>
+			</footer>
 		</div>
 	</div>
 </Layout>
+
+<style>
+	footer p {
+		font-size: 0.75rem;
+		margin-block: 0;
+	}
+</style>
