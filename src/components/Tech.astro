@@ -35,21 +35,20 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 ---
 
 <div
-	class="tech-item group relative flex cursor-pointer flex-col items-center rounded-lg border p-3 transition-all duration-200 hover:scale-105"
+	class="tech-item group relative flex flex-col items-center justify-center gap-2 rounded-lg border p-3 text-center transition-all duration-200 hover:scale-105"
 	data-category={category}
 	style={`
         background-color: ${backgroundColorNormal};
         border-color: rgba(71, 85, 105, 0.5);
-        --hover-bg: linear-gradient(90deg, ${backgroundColorHover}, rgba(30, 41, 59, 0.6));
+        --hover-bg: ${backgroundColorHover};
         --hover-border: ${borderColorHover};
         --hover-shadow: 0 8px 25px -8px ${shadowColor};
     `}
 >
-	<div class="relative flex h-9 w-9 items-center justify-center">
-		<!-- <Fragment set:html={iconPath} class={"w-full h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-300 relative z-10"} /> -->
+	<div class="relative flex h-8 w-8 items-center justify-center">
 		<img
-			height="41"
-			width="41"
+			height="36"
+			width="36"
 			src={iconSrc}
 			alt={`${name} icon`}
 			class="relative z-10 h-full w-full object-contain brightness-90 filter transition-all duration-200 group-hover:brightness-110"
@@ -62,26 +61,17 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 		</div>
 	</div>
 
-	<!-- Enhanced tooltip -->
-	<div
-		class="pointer-events-none absolute -top-5 left-1/2 -translate-x-1/2 transform rounded-md border border-slate-700/50 bg-slate-900/95 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 backdrop-blur-sm transition-all duration-200 group-hover:opacity-100"
-		style={`box-shadow: 0 4px 12px ${shadowColor};`}
-	>
-		{name}
-		<div
-			class="absolute top-full left-1/2 h-0 w-0 -translate-x-1/2 transform border-t-2 border-r-2 border-l-2 border-transparent border-t-slate-900/95"
-		>
-		</div>
-	</div>
+	<span class="text-xs text-slate-300 transition-colors group-hover:text-white">{name}</span>
 </div>
 
 <style>
 	.tech-item {
-		min-width: 50px;
+		width: 90px;
+		height: 90px;
 	}
 
 	.tech-item:hover {
-		background: var(--hover-bg) !important;
+		background-color: var(--hover-bg) !important;
 		border-color: var(--hover-border) !important;
 		box-shadow: var(--hover-shadow);
 	}
@@ -94,9 +84,10 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 		right: 0;
 		bottom: 0;
 		border-radius: inherit;
-		background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+		background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent);
 		opacity: 0;
 		pointer-events: none;
+		transition: opacity 0.2s;
 	}
 
 	.tech-item:hover::before {

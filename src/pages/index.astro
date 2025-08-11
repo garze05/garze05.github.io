@@ -168,6 +168,38 @@ import Project from "../components/Project.astro";
 	</div>
 </Layout>
 
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const sections = document.querySelectorAll("main section[id]");
+		const navLinks = document.querySelectorAll("header nav a");
+
+		const observerOptions = {
+			root: null, // relative to the viewport
+			rootMargin: "0px",
+			threshold: 0.6 // 60% of the section must be visible
+		};
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					const currentId = entry.target.id;
+					navLinks.forEach((link) => {
+						link.classList.remove("active");
+						// Check if the link's href matches the section's id
+						if (link.getAttribute("href") === `#${currentId}`) {
+							link.classList.add("active");
+						}
+					});
+				}
+			});
+		}, observerOptions);
+
+		sections.forEach((section) => {
+			observer.observe(section);
+		});
+	});
+</script>
+
 <style>
 	footer p {
 		font-size: 0.75rem;

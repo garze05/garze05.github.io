@@ -1,147 +1,55 @@
 ---
 import Tech from "./Tech.astro";
 
-// Define the tech stack with categories
 const technologies = [
-	// Frontend
+	// ... (tu lista de tecnologías no cambia)
 	{ name: "React", icon: "react", category: "Frontend", color: "#61DAFB" },
-	// {
-	// 	name: "TypeScript",
-	// 	icon: "typescript",
-	// 	category: "Frontend",
-	// 	color: "#3178C6",
-	// },
-	{
-		name: "JavaScript",
-		icon: "javascript",
-		category: "Frontend",
-		color: "#F7DF1E"
-	},
+	{ name: "JavaScript", icon: "javascript", category: "Frontend", color: "#F7DF1E" },
 	{ name: "HTML5", icon: "html5", category: "Frontend", color: "#E34F26" },
 	{ name: "CSS3", icon: "css", category: "Frontend", color: "#663399" },
-	{
-		name: "Tailwind CSS",
-		icon: "tailwindcss",
-		category: "Frontend",
-		color: "#06B6D4"
-	},
-	{
-		name: "Bootstrap",
-		icon: "bootstrap",
-		category: "Frontend",
-		color: "#7952B3"
-	},
+	{ name: "Tailwind CSS", icon: "tailwindcss", category: "Frontend", color: "#06B6D4" },
+	{ name: "Bootstrap", icon: "bootstrap", category: "Frontend", color: "#7952B3" },
 	{ name: "Astro", icon: "astro", category: "Frontend", color: "#BC52EE" },
 	{ name: "Redux", icon: "redux", category: "Frontend", color: "#764ABC" },
-
-	// Backend
 	{ name: "Node.js", icon: "nodedotjs", category: "Backend", color: "#5FA04E" },
 	{ name: "Express", icon: "express", category: "Backend", color: "#000000" },
 	{ name: ".NET", icon: "dotnet", category: "Backend", color: "#512BD4" },
 	{ name: "Python", icon: "python", category: "Backend", color: "#3776AB" },
-
-	// Database
-	// { name: "MongoDB", icon: "mongodb", category: "Database", color: "#47A248" },
-	{
-		name: "PostgreSQL",
-		icon: "postgresql",
-		category: "Database",
-		color: "#4169E1"
-	},
+	{ name: "PostgreSQL", icon: "postgresql", category: "Database", color: "#4169E1" },
 	{ name: "MySQL", icon: "mysql", category: "Database", color: "#4479A1" },
-	{
-		name: "SQL Server",
-		icon: "sqlserver",
-		category: "Database",
-		color: "#a91d22"
-	},
-
-	// Tools
+	{ name: "SQL Server", icon: "sqlserver", category: "Database", color: "#a91d22" },
 	{ name: "Git", icon: "git", category: "Tools", color: "#F05032" },
 	{ name: "Github", icon: "github", category: "Tools", color: "#181717" },
-	// { name: "Firebase", icon: "firebase", category: "Tools", color: "#DD2C00" },
 	{ name: "Linux", icon: "linux", category: "Tools", color: "#FCC624" }
 ];
 
-const categories = ["All", "Frontend", "Backend", "Database", "Tools"];
+// Ahora las categorías se usarán para crear secciones
+const categories = ["Frontend", "Backend", "Database", "Tools"];
 ---
 
-<!-- Category Filter -->
-<div class="category-filters mb-6">
-	<div class="flex flex-wrap gap-2">
-		{
-			categories.map((category) => (
-				<button
-					class="filter-btn rounded-full border border-slate-600 px-3 py-1.5 text-sm text-slate-300 transition-all duration-300 hover:bg-slate-700 hover:text-white focus:ring-2 focus:ring-slate-500 focus:outline-none"
-					data-filter={category.toLowerCase()}
-				>
-					{category}
-				</button>
-			))
-		}
-	</div>
-</div>
-
-<!-- Tech Grid -->
-<div id="tech-grid" class="grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6">
+<div class="space-y-8">
 	{
-		technologies.map((tech) => (
-			<Tech name={tech.name} icon={tech.icon} category={tech.category} color={tech.color} />
+		categories.map((category) => (
+			<section>
+				<h4 class="mb-4 text-lg font-semibold text-slate-300">{category}</h4>
+				<div class="flex flex-wrap gap-3">
+					{technologies
+						.filter((tech) => tech.category === category)
+						.map((tech) => (
+							<Tech
+								name={tech.name}
+								icon={tech.icon}
+								category={tech.category}
+								color={tech.color}
+							/>
+						))}
+				</div>
+			</section>
 		))
 	}
 </div>
 
-<script>
-	// Filter functionality
-	const filterButtons = document.querySelectorAll(".filter-btn");
-	const techItems = document.querySelectorAll(".tech-item");
-
-	// Set initial active state
-	if (filterButtons[0]) {
-		filterButtons[0].classList.add("active");
-	}
-
-	filterButtons.forEach((button) => {
-		button.addEventListener("click", () => {
-			const filter = button.getAttribute("data-filter");
-
-			// Update active button
-			filterButtons.forEach((btn) => btn.classList.remove("active"));
-			button.classList.add("active");
-
-			// Filter tech items with transparency and dimming effect
-			techItems.forEach((item) => {
-				const htmlItem = item as HTMLElement;
-				const itemCategory = item.getAttribute("data-category");
-
-				if (filter === "all" || (itemCategory && itemCategory.toLowerCase() === filter)) {
-					// Selected items: full visibility and interactive
-					htmlItem.style.opacity = "1";
-					htmlItem.style.transform = "scale(1)";
-					htmlItem.style.filter = "brightness(1) saturate(1)";
-					htmlItem.style.pointerEvents = "auto";
-					htmlItem.classList.remove("dimmed");
-				} else {
-					// Non-selected items: dimmed, transparent and non-interactive
-					htmlItem.style.opacity = "0.1";
-					htmlItem.style.filter =
-						"brightness(0.2) saturate(0.3) contrast(0) grayscale(100%)";
-					htmlItem.style.pointerEvents = "none";
-					htmlItem.classList.add("dimmed");
-				}
-			});
-		});
-	});
-</script>
-
-<style>
-	.filter-btn.active {
-		background-color: rgb(71 85 105);
-		color: white;
-		border-color: rgb(71 85 105);
-	}
-
-	.tech-item.dimmed {
-		cursor: not-allowed;
-	}
-</style>
+<!-- El script de filtrado ya no es necesario con este enfoque -->
+<!-- <script> ... </script> -->
+<!-- Los estilos para .filter-btn y .dimmed tampoco son necesarios -->
+<!-- <style> ... </style> -->
