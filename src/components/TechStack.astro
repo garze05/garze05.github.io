@@ -50,7 +50,7 @@ const technologies = [
 const categories = ["Languages", "Frontend", "Backend", "Databases", "Cloud", "Tooling / DevOps"];
 ---
 
-<div class="space-y-6">
+<div class="space-y-4">
 	{
 		categories
 			.filter((cat) => technologies.some((t) => t.category === cat))
@@ -59,7 +59,7 @@ const categories = ["Languages", "Frontend", "Backend", "Databases", "Cloud", "T
 				const total = items.length;
 				return (
 					<details class="cat group open">
-						<summary class="flex cursor-pointer items-center justify-between gap-3 px-3 py-2 select-none">
+						<summary class="flex cursor-pointer items-center justify-items-center gap-3 px-3 py-2 select-none">
 							<span class="mb-2 flex items-center gap-2">
 								<span class="text-[11px] font-semibold tracking-wide text-slate-300 uppercase">
 									{category}
@@ -80,7 +80,7 @@ const categories = ["Languages", "Frontend", "Backend", "Databases", "Cloud", "T
 							</span>
 						</summary>
 						<div class="content px-3 pt-1 pb-3">
-							<div class="xs:grid-cols-5 grid grid-cols-4 gap-3 sm:grid-cols-6 md:flex md:flex-wrap">
+							<div class="xs:grid-cols-5 grid grid-cols-4 items-center justify-items-center gap-3 sm:grid-cols-6 md:flex md:flex-wrap">
 								{items.map((t) => (
 									<Tech
 										name={t.name}
@@ -132,7 +132,7 @@ const categories = ["Languages", "Frontend", "Backend", "Databases", "Cloud", "T
 			background-color 0.25s;
 	}
 	details.cat[open] {
-		background-color: rgba(255, 255, 255, 0.02);
+		/* background-color: rgba(255, 255, 255, 0.02); */
 		border-radius: 10px;
 	}
 	.chevron {
