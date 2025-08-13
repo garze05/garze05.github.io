@@ -33,9 +33,10 @@ interface Props {
 	icon: string;
 	category: string;
 	status?: "learning" | "proficient";
+	color?: string;
 }
 
-const { name, icon, category, status = "proficient" } = Astro.props;
+const { name, icon, category, status = "proficient", color: propColor } = Astro.props;
 
 // slugs to imported icons
 const iconMap: Record<string, SimpleIcon> = {
@@ -94,8 +95,12 @@ registerLocalIcon("java", "java.svg", "#f89820", "Java");
 const iconData = iconMap[icon];
 const customData = !iconData ? customIcons[icon] : undefined;
 
-const hex = iconData?.hex || customData?.hex || "FFFFFF";
-const color = `#${hex}`;
+// Prioritize explicit color prop over simple-icons/custom hex
+const fallbackHex = iconData?.hex || customData?.hex || "FFFFFF";
+let color = (propColor?.trim() || `#${fallbackHex}`) as string;
+if (!color.startsWith("#") && /^[0-9a-fA-F]{6}$/.test(color)) {
+	color = `#${color}`;
+}
 
 const title = iconData?.title || customData?.title || name;
 
@@ -131,14 +136,12 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 		style={`color:${color};`}
 		set:html={svgMarkup}
 	/>
-	<span
-		class="px-1 text-center text-[10px] leading-tight text-slate-300 group-hover:text-white md:text-xs"
-	>
+	<span class="px-1 text-center text-[10px] leading-tight text-slate-300 md:text-xs">
 		{name}
 	</span>
 	{
 		status === "learning" && (
-			<span class="absolute -top-2.5 -right-2 rounded bg-amber-900 px-1 py-[2px] text-[9px] font-semibold tracking-wide text-amber-400 shadow md:text-[10px]">
+			<span class="learning-badge absolute top-0.5 rounded bg-amber-900 px-0.5 py-px text-[8px] font-semibold tracking-wide text-amber-400 shadow sm:px-1 sm:py-[2px] sm:text-[9px] md:-top-2.5 md:-right-2 md:text-[10px]">
 				Learning
 			</span>
 		)
@@ -146,9 +149,15 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 </div>
 
 <style>
+	.learning-badge {
+		line-height: 1;
+		white-space: nowrap;
+	}
 	.tech-item {
-		width: 72px;
+		width: 52px;
 		height: 72px;
+		background-color: transparent !important;
+		border-color: transparent !important;
 	}
 	@media (min-width: 640px) {
 		.tech-item {
@@ -161,10 +170,6 @@ const shadowColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.2)`;
 			width: 90px;
 			height: 90px;
 		}
-	}
-	.tech-item[data-status="learning"] {
-		opacity: 0.75;
-		border-style: dashed;
 	}
 	.tech-item:hover {
 		background-color: var(--hover-bg) !important;
