@@ -2,54 +2,160 @@
 import Tech from "./Tech.astro";
 
 const technologies = [
-	// ... (tu lista de tecnologías no cambia)
-	{ name: "React", icon: "react", category: "Frontend", color: "#61DAFB" },
-	{ name: "JavaScript", icon: "javascript", category: "Frontend", color: "#F7DF1E" },
-	{ name: "HTML5", icon: "html5", category: "Frontend", color: "#E34F26" },
-	{ name: "CSS3", icon: "css", category: "Frontend", color: "#663399" },
-	{ name: "Tailwind CSS", icon: "tailwindcss", category: "Frontend", color: "#06B6D4" },
-	{ name: "Bootstrap", icon: "bootstrap", category: "Frontend", color: "#7952B3" },
-	{ name: "Astro", icon: "astro", category: "Frontend", color: "#BC52EE" },
-	{ name: "Redux", icon: "redux", category: "Frontend", color: "#764ABC" },
-	{ name: "Node.js", icon: "nodedotjs", category: "Backend", color: "#5FA04E" },
-	{ name: "Express", icon: "express", category: "Backend", color: "#000000" },
-	{ name: ".NET", icon: "dotnet", category: "Backend", color: "#512BD4" },
-	{ name: "Python", icon: "python", category: "Backend", color: "#3776AB" },
-	{ name: "PostgreSQL", icon: "postgresql", category: "Database", color: "#4169E1" },
-	{ name: "MySQL", icon: "mysql", category: "Database", color: "#4479A1" },
-	{ name: "SQL Server", icon: "sqlserver", category: "Database", color: "#a91d22" },
-	{ name: "Git", icon: "git", category: "Tools", color: "#F05032" },
-	{ name: "Github", icon: "github", category: "Tools", color: "#181717" },
-	{ name: "Linux", icon: "linux", category: "Tools", color: "#FCC624" }
+	// Languages
+	{ name: "JavaScript", icon: "javascript", category: "Languages" },
+	{ name: "TypeScript", icon: "typescript", category: "Languages", status: "learning" },
+	{ name: "Python", icon: "python", category: "Languages" },
+	{ name: "SQL", icon: "sql", category: "Languages" },
+	{ name: "Java", icon: "java", category: "Languages" },
+
+	// Frontend
+	{ name: "HTML5", icon: "html5", category: "Frontend" },
+	{ name: "CSS3", icon: "css", category: "Frontend" },
+	{ name: "Tailwind CSS", icon: "tailwindcss", category: "Frontend" },
+	{ name: "Bootstrap", icon: "bootstrap", category: "Frontend" },
+	{ name: "React", icon: "react", category: "Frontend" },
+	{ name: "Astro", icon: "astro", category: "Frontend" },
+	{ name: "Redux", icon: "redux", category: "Frontend", status: "learning" },
+
+	// Backend
+	{ name: "Node.js", icon: "nodedotjs", category: "Backend" },
+	{ name: "Express", icon: "express", category: "Backend" },
+	{ name: ".NET", icon: "dotnet", category: "Backend" },
+
+	// Databases
+	{ name: "PostgreSQL", icon: "postgresql", category: "Databases", status: "learning" },
+	{ name: "MySQL", icon: "mysql", category: "Databases" },
+	{ name: "SQL Server", icon: "sqlserver", category: "Databases" },
+	{ name: "MongoDB", icon: "mongodb", category: "Databases", status: "learning" },
+	{ name: "Prisma", icon: "prisma", category: "Databases", status: "learning" },
+
+	// Cloud
+	{ name: "Netlify", icon: "netlify", category: "Cloud" },
+	{ name: "Oracle Cloud", icon: "oracle", category: "Cloud" },
+
+	// Tooling / DevOps
+	{ name: "Git", icon: "git", category: "Tooling / DevOps" },
+	{ name: "GitHub", icon: "github", category: "Tooling / DevOps" },
+	{ name: "Linux", icon: "linux", category: "Tooling / DevOps" },
+	{ name: "Docker", icon: "docker", category: "Tooling / DevOps", status: "learning" },
+	{
+		name: "GitHub Actions",
+		icon: "githubactions",
+		category: "Tooling / DevOps",
+		status: "learning"
+	},
+	{ name: "Figma", icon: "figma", category: "Tooling / DevOps" }
 ];
 
-// Ahora las categorías se usarán para crear secciones
-const categories = ["Frontend", "Backend", "Database", "Tools"];
+const categories = ["Languages", "Frontend", "Backend", "Databases", "Cloud", "Tooling / DevOps"];
 ---
 
-<div class="space-y-8">
+<div class="space-y-6">
 	{
-		categories.map((category) => (
-			<section>
-				<h4 class="mb-4 text-lg font-semibold text-slate-300">{category}</h4>
-				<div class="flex flex-wrap gap-3">
-					{technologies
-						.filter((tech) => tech.category === category)
-						.map((tech) => (
-							<Tech
-								name={tech.name}
-								icon={tech.icon}
-								category={tech.category}
-								color={tech.color}
-							/>
-						))}
-				</div>
-			</section>
-		))
+		categories
+			.filter((cat) => technologies.some((t) => t.category === cat))
+			.map((category) => {
+				const items = technologies.filter((t) => t.category === category);
+				const total = items.length;
+				return (
+					<details class="cat group open">
+						<summary class="flex cursor-pointer items-center justify-between gap-3 px-3 py-2 select-none">
+							<span class="mb-2 flex items-center gap-2">
+								<span class="text-[11px] font-semibold tracking-wide text-slate-300 uppercase">
+									{category}
+								</span>
+								<span class="rounded bg-slate-700/60 px-1.5 py-[2px] text-[10px] font-medium text-slate-300">
+									{total}
+								</span>
+							</span>
+							<span class="chevron mr-1 inline-block h-3 w-3 origin-center rotate-0 transition-transform duration-200">
+								<svg viewBox="0 0 20 20" fill="none" stroke="currentColor">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M6 8l4 4 4-4"
+									/>
+								</svg>
+							</span>
+						</summary>
+						<div class="content px-3 pt-1 pb-3">
+							<div class="xs:grid-cols-5 grid grid-cols-4 gap-3 sm:grid-cols-6 md:flex md:flex-wrap">
+								{items.map((t) => (
+									<Tech
+										name={t.name}
+										icon={t.icon}
+										category={t.category}
+										status={t.status}
+									/>
+								))}
+							</div>
+						</div>
+					</details>
+				);
+			})
 	}
 </div>
 
-<!-- El script de filtrado ya no es necesario con este enfoque -->
-<!-- <script> ... </script> -->
-<!-- Los estilos para .filter-btn y .dimmed tampoco son necesarios -->
-<!-- <style> ... </style> -->
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const details = Array.from(document.querySelectorAll("details.cat"));
+		function sync() {
+			const wide = window.matchMedia("(min-width: 768px)").matches;
+			details.forEach((d) => {
+				if (wide) {
+					d.setAttribute("open", "");
+				} else {
+					// mantener estado previo si el usuario ya abrió/cerró
+					if (!d.dataset.userToggled) d.removeAttribute("open");
+				}
+			});
+		}
+		details.forEach((d) => {
+			d.addEventListener("toggle", () => {
+				d.dataset.userToggled = "true";
+			});
+		});
+		sync();
+		window.addEventListener("resize", () => requestAnimationFrame(sync));
+	});
+</script>
+
+<style>
+	details.cat {
+		transition:
+			border-color 0.25s,
+			background-color 0.25s;
+	}
+	details.cat[open] {
+		background-color: rgba(255, 255, 255, 0.02);
+		border-radius: 10px;
+	}
+	.chevron {
+		color: rgb(148 163 184);
+	}
+	details[open] > summary .chevron {
+		transform: rotate(180deg);
+	}
+	@media (min-width: 768px) {
+		details.cat {
+			border: none;
+			background: transparent;
+			padding: 0;
+		}
+		details.cat > summary {
+			cursor: default;
+			padding: 0 0 0.25rem 0;
+		}
+		details.cat[open] {
+			background: transparent;
+		}
+		details.cat > summary .chevron {
+			display: none;
+		}
+	}
+	summary::-webkit-details-marker {
+		display: none;
+	}
+</style>
