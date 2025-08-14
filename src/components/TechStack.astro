@@ -58,7 +58,7 @@ const categories = ["Languages", "Frontend", "Backend", "Databases", "Cloud", "T
 				const items = technologies.filter((t) => t.category === category);
 				const total = items.length;
 				return (
-					<details class="cat group open">
+					<details class="cat group" open>
 						<summary class="flex cursor-pointer items-center justify-between gap-3 px-3 py-2 select-none">
 							<span class="mb-2 flex items-center gap-2">
 								<span class="text-[11px] font-semibold tracking-wide text-slate-300 uppercase">
@@ -98,32 +98,6 @@ const categories = ["Languages", "Frontend", "Backend", "Databases", "Cloud", "T
 </div>
 
 <!-- status={t.status as "learning" | "proficient" | undefined} -->
-
-<script>
-	document.addEventListener("DOMContentLoaded", () => {
-		const details = Array.from(
-			document.querySelectorAll("details.cat")
-		) as HTMLDetailsElement[];
-		function sync() {
-			const wide = window.matchMedia("(min-width: 768px)").matches;
-			details.forEach((d) => {
-				if (wide) {
-					d.setAttribute("open", "");
-				} else {
-					// mantener estado previo si el usuario ya abrió/cerró
-					if (!d.dataset.userToggled) d.removeAttribute("open");
-				}
-			});
-		}
-		details.forEach((d) => {
-			d.addEventListener("toggle", () => {
-				d.dataset.userToggled = "true";
-			});
-		});
-		sync();
-		window.addEventListener("resize", () => requestAnimationFrame(sync));
-	});
-</script>
 
 <style>
 	details.cat {
